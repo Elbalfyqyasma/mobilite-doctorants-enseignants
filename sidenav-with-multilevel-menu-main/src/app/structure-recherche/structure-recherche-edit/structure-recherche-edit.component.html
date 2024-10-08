@@ -1,0 +1,45 @@
+<div class="formbold-main-wrapper">
+    <div class="formbold-form-wrapper">
+        <h2>Modifier une structure de recherche</h2>
+
+        <form [formGroup]="structureForm" (ngSubmit)="onUpdate()" class="formbold-form">
+            <div class="formbold-input-wrapper">
+                <label for="intitule" class="formbold-form-label">Intitulé</label>
+                <input [value]="object.intituleS" formControlName="intituleS" type="text" name="intituleS" id="intituleS" placeholder="Enter Intitulé" class="formbold-form-input" />
+                <div *ngIf="structureForm.controls['intituleS'].invalid && (structureForm.controls['intituleS'].dirty || structureForm.controls['intituleS'].touched)">
+                    <small class="formbold-error-message">L'Intitulé de la structure est requis.</small>
+                </div>
+            </div>
+
+            <div class="formbold-input-wrapper">
+                <label for="acronyme" class="formbold-form-label">Acronyme</label>
+                <input formControlName="acronyme" type="text" name="acronyme" id="acronyme" placeholder="Enter Acronyme" class="formbold-form-input" />
+                <div *ngIf="structureForm.controls['acronyme'].invalid && (structureForm.controls['acronyme'].dirty || structureForm.controls['acronyme'].touched)">
+                    <small class="formbold-error-message">L'Acronyme de la structure est requis.</small>
+                </div>
+            </div>
+
+            <div class="formbold-input-wrapper">
+                <label for="directeur" class="formbold-form-label">Directeur</label>
+                <input formControlName="directeur" type="text" name="directeur" id="directeur" placeholder="Enter Directeur" class="formbold-form-input" />
+                <div *ngIf="structureForm.controls['directeur'].invalid && (structureForm.controls['directeur'].dirty || structureForm.controls['directeur'].touched)">
+                    <small class="formbold-error-message">Le Directeur de la structure est requis.</small>
+                </div>
+            </div>
+
+            <div class="formbold-input-wrapper  mb-4">
+                <label for="ced" class="formbold-form-label">CED</label>
+                <select formControlName="ced_id" name="ced" id="ced" class="formbold-form-input">
+                    <option *ngFor="let ced of ceds" [value]="ced.id">{{ ced.intitule }}</option>
+                </select>
+                <div *ngIf="structureForm.controls['ced_id'].invalid && (structureForm.controls['ced_id'].dirty || structureForm.controls['ced_id'].touched)">
+                    <small class="formbold-error-message">CED is required.</small>
+                </div>
+            </div>
+
+            <div class="formbold-submit-wrapper">
+                <button class="formbold-btn">Modifier</button>
+            </div>
+        </form>
+    </div>
+</div>

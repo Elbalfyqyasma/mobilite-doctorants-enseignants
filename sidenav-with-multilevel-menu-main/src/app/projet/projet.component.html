@@ -1,0 +1,140 @@
+<script src="https://cdn.tiny.cloud/1/{your-tinymce-api-key}/tinymce/5/plugins/hr/plugin.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/{your-tinymce-api-key}/tinymce/5/plugins/spellchecker/plugin.min.js" referrerpolicy="origin"></script>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-3">
+            <form [formGroup]="OrganisationDetails" id="msform">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li [ngClass]="step >= 1 ? 'active' : 'inactive'"> Organisation d'acceuil</li>
+                    <li [ngClass]="step >= 2 ? 'active' : 'inactive'"> Projet de mobilité</li>
+                </ul>
+                <!-- fieldsets -->
+                <fieldset *ngIf="step == 1">
+                    <h2 class="fs-title">Organisation d'acceuil</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="formbold-input-wrapper">
+                                <label for="intitule" class="formbold-form-label">Intitulé</label>
+                                <input formControlName="intitule" type="text" name="intitule" id="intitule" placeholder="Enter intitule" class="formbold-form-input" style="border-radius:6px;" />
+                                <div *ngIf="OrganisationDetails.controls['intitule'].invalid && (OrganisationDetails.controls['intitule'].dirty || OrganisationDetails.controls['intitule'].touched)">
+                                    <small class="formbold-error-message">L'intitulé est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="formbold-input-wrapper  mb-4">
+                                <label for="ced" class="formbold-form-label">pays</label>
+                                <select formControlName="pays" id="pays" name="pays" class="formbold-form-input" [(ngModel)]="selectedCountry" (change)="onCountryChange($event)">
+                                     <option *ngFor="let pays of payss" [value]="pays.id">{{ pays.nom }}</option>
+        </select>
+                                <div *ngIf="OrganisationDetails.controls['pays'].invalid && (OrganisationDetails.controls['pays'].dirty || OrganisationDetails.controls['pays'].touched)">
+                                    <small class="formbold-error-message">Pays est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="formbold-input-wrapper  mb-4">
+                                <label for="ville" class="formbold-form-label">Ville</label>
+                                <select [(ngModel)]="selectedCity" formControlName="ville" name="ville" id="ville" class="formbold-form-input dropdown-toggle">
+                                    <option *ngFor="let ville of villes" [value]="ville.id">{{ ville.nom }}</option>
+                                </select>
+                                <div *ngIf="OrganisationDetails.controls['ville'].invalid && (OrganisationDetails.controls['ville'].dirty || OrganisationDetails.controls['ville'].touched)">
+                                    <small class="formbold-error-message">ville est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+                </fieldset>
+            </form>
+            <form [formGroup]="projetDetails" id="msform">
+                <fieldset *ngIf="step == 2">
+                    <input type="hidden" formControlName="user_id" name="user_id" [value]="userId" />
+
+                    <input type="hidden" formControlName="organismeId" name="organismeId" [value]="organismeId" />
+
+                    <h2 class="fs-title">Detail projet</h2>
+                    <div class="formbold-input-wrapper">
+                        <label for="titre" class="formbold-form-label">intitule</label>
+                        <input formControlName="intituleP" type="text" name="intituleP" id="intituleP" placeholder="Enter intitule" class="formbold-form-input   content" style="border-radius:6px;" />
+                        <div *ngIf="projetDetails.controls['intituleP'].invalid && (projetDetails.controls['intituleP'].dirty || projetDetails.controls['intituleP'].touched)">
+                            <small class="formbold-error-message">Le intitule est requis.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper  mb-4">
+                        <label for="cadre_mobilite_id" class="formbold-form-label">cadre de mobilité</label>
+                        <select formControlName="cadre_mobilite_id" id="cadre_mobilite_id" name="cadre_mobilite_id" class="formbold-form-input" [(ngModel)]="selectedCountry">
+                                     <option *ngFor="let cadre of cadres" [value]="cadre.id">{{ cadre.libelleC }}</option>
+                                 </select>
+                        <div *ngIf="projetDetails.controls['cadre_mobilite_id'].invalid && (projetDetails.controls['cadre_mobilite_id'].dirty || projetDetails.controls['cadre_mobilite_id'].touched)">
+                            <small class="formbold-error-message">cadre de mobilite est requis.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="encadrant" class="formbold-form-label">encadrant</label>
+                        <input formControlName="encadrant" type="text" name="encadrant" id="encadrant" placeholder="Enter le nom de votre encadrant" class="formbold-form-input" style="border-radius:6px;" />
+                        <div *ngIf="projetDetails.controls['encadrant'].invalid && (projetDetails.controls['encadrant'].dirty || projetDetails.controls['encadrant'].touched)">
+                            <small class="formbold-error-message">Le nom de l'encadrant est requis.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="dateM" class="formbold-form-label">Date de début</label>
+                        <input formControlName="dateM" type="date" id="dateM" name="dateM" placeholder="" class="formbold-form-input" style="border-radius: 6px;" />
+                    </div>
+
+
+                    <div class="formbold-input-wrapper">
+                        <label for="dateF" class="formbold-form-label">Date de fin</label>
+                        <input formControlName="dateF" type="date" id="dateF" name="dateF" placeholder="" class="formbold-form-input" style="border-radius: 6px;" />
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="descriptionP" class="formbold-form-label">Description du sujet de thèse</label>
+                        <textarea rows="6" formControlName="descriptionP" name="descriptionP" id="descriptionP" placeholder="" class="formbold-form-input" style="border-radius:6px;" class="formbold-form-input c-with-editor"></textarea>
+                        <div *ngIf="projetDetails.controls['descriptionP'].invalid && (projetDetails.controls['descriptionP'].dirty || projetDetails.controls['descriptionP'].touched)">
+                            <small class="formbold-error-message">La description du sujet de thèse est requise.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="resultatattendu" class="formbold-form-label">les résultats attendu</label>
+                        <textarea rows="6" formControlName="resultatattendu" name="resultatattendu" id="resultatattendu" class="formbold-form-input" style="border-radius:6px;" class="formbold-form-input c-with-editor"></textarea>
+                        <div *ngIf="projetDetails.controls['resultatattendu'].invalid && (projetDetails.controls['resultatattendu'].dirty || projetDetails.controls['resultatattendu'].touched)">
+                            <small class="formbold-error-message">les résultats attendu sont requis.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="travaux" class="formbold-form-label">Description des travaux de recherche </label>
+                        <textarea rows="6" formControlName="travaux" name="travaux" id="resultatattendu" class="formbold-form-input" style="border-radius:6px;" class="formbold-form-input c-with-editor"></textarea>
+                        <div *ngIf="projetDetails.controls['travaux'].invalid && (projetDetails.controls['travaux'].dirty || projetDetails.controls['travaux'].touched)">
+                            <small class="formbold-error-message">les travaux de recherche  sont requis.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="travaux" class="formbold-form-label"> Invitation </label>
+                        <input formControlName="invitation" class="form-control form-control-lg" id="formFileLg" type="file" (change)="onFileChange($event)">
+                        <div *ngIf="projetDetails.controls['invitation'].invalid && (projetDetails.controls['invitation'].dirty || projetDetails.controls['invitation'].touched)">
+                            <small class="formbold-error-message">les travaux de recherche  sont requis.</small>
+                        </div>
+                    </div>
+
+                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    <input (click)="submitForms()" type="button" name="next" class="next action-button" value="Next" />
+                </fieldset>
+            </form>
+
+
+
+        </div>
+    </div>
+</div>

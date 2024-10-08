@@ -1,0 +1,203 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+
+
+
+<br>
+<div class="custom-main-container">
+    <div class=" card-body ">
+
+
+    </div>
+    <!-- Button trigger modal -->
+    <div class="border d-flex " style="background-color: #f8f9fa; ">
+
+    </div>
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+            <a class="navbar-brand " href="# ">Filteres</a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
+                  <span class="navbar-toggler-icon "></span>
+                </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+                <ul class="navbar-nav mr-auto ">
+
+                    <div class="navbar filters ">
+                        <ul>
+
+                            <li class="dropdown-link mr-3 ">
+                                <a> Role
+                              <i class="fas fa-chevron-down "></i>
+                                </a>
+                                <ul class="dropdown ">
+                                    <ng-container *ngFor="let role of roles ">
+                                        <li [value]="role " (click)="onRoleChange(role) ">
+                                            <a>
+                                      {{ role }}
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+
+
+
+                            </li>
+
+
+                            <li class="dropdown-link mr-3 ">
+                                <a> Status
+                              <i class="fas fa-chevron-down "></i>
+                                </a>
+                                <ul class="dropdown ">
+                                    <ng-container *ngFor="let role of roles ">
+                                        <li [value]="role " (click)="onRoleChange(role) ">
+                                            <a>
+                                      {{ role }}
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+
+
+
+                            </li>
+
+                            <li class="dropdown-link mr-3 ">
+                                <a> CDE
+                              <i class="fas fa-chevron-down "></i>
+                                </a>
+                                <ul class="dropdown ">
+                                    <ng-container *ngFor="let role of roles ">
+                                        <li [value]="role " (click)="onRoleChange(role) ">
+                                            <a>
+                                      {{ role }}
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+
+
+
+                            </li>
+                            <li class="dropdown-link mr-3 ">
+                                <a> Structure de recherche
+                              <i class="fas fa-chevron-down "></i>
+                                </a>
+                                <ul class="dropdown ">
+                                    <ng-container *ngFor="let role of roles ">
+                                        <li [value]="role " (click)="onRoleChange(role) ">
+                                            <a>
+                                      {{ role }}
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ul>
+
+
+
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </ul>
+                <form [formGroup]="searchFormGroup " (ngSubmit)="handleSearchUser() " class="form-inline mb-4 mt-4 ml-5 " style="width: 300px;display: flex;justify-content: right;align-items: right; float:right; ">
+                    <div class="input-group mb-3 ">
+                        <input type="text " class="form-control " formControlName="Keyword " placeholder="Keyword ">
+                        <div class="input-group-append ">
+                            <button class="btn btn-info " type="button ">
+                                <i class="fa fa-search "></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+
+    </div>
+
+    <table class="table table-bordered table-striped " style="background-color: #f8f9fa; ">
+        <thead>
+            <tr>
+                <th></th>
+                <th>image</th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>role</th>
+                <th>email</th>
+                <th>CDE</th>
+                <th>Structure de recherche</th>
+                <th>Statut du compte</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of Users ">
+                <th class="number-cell center-text " scope="row ">{{user.index}}</th>
+                <td><span> <img class="imageP " alt="Profile Image " src="assets/images/users/{{user.image}} " alt="Profile Image " ></span></td>
+                <td class="wrap-cell left-text "><span>{{user.nom}}</span></td>
+                <td class="wrap-cell left-text "><span>{{user.prenom}}</span></td>
+                <td class="wrap-cell left-text ">
+
+                    <span *ngIf="user.role==='admin' " class="badge badge-info " style="font-size: 15px; ">Admin</span>
+                    <span *ngIf="user.role==='enseignant' " class="badge badge-success " style="font-size: 15px; ">Enseignant</span>
+                    <span *ngIf="user.role==='doctorant' " class="badge badge-primary " style="font-size: 15px; ">Doctorant</span>
+                </td>
+
+                <td class="wrap-cell left-text "><span>{{user.email}}</span></td>
+                <td class="wrap-cell left-text "><span>Droit</span></td>
+                <td class="wrap-cell left-text "><span>laboratoire</span></td>
+                <td class="wrap-cell left-text "><span>valide</span></td>
+
+                <td>
+                    <div class="d-flex ">
+                        <button class="btn btn-sm btn-danger " (click)="delete(user) ">
+                            <i class="fa fa-remove "></i> Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="input-group ">
+        <nav aria-label="... " class="mr-2 ">
+            <ul class="pagination ">
+                <li class="page-item " [ngClass]="{ 'disabled': currentPage===0 } ">
+                    <a class="page-link " (click)="gotoPage(currentPage - 1) " tabindex="-1 " [attr.aria-disabled]="currentPage===0 ? 'true' : 'false' ">Previous</a>
+                </li>
+
+                <li class="page-item " *ngFor="let item of [].constructor(totalPages); let i=index " [ngClass]="{ 'active': i===currentPage} ">
+                    <a class="page-link " (click)="gotoPage(i) ">{{i + 1}}</a>
+                </li>
+                <li class="page-item " [ngClass]="{ 'disabled': currentPage===totalPages - 1} ">
+                    <a class="page-link " (click)="gotoPage(currentPage + 1) " [attr.aria-disabled]="currentPage===totalPages - 1 ? 'true' : 'false' ">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+        <span class="input-group-addon ">
+            <select id="numbers " class="form-control " (change)="changePageSize($event) "  >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option selected >5</option>
+            </select>
+        </span>
+    </div>
+
+
+
+
+
+</div>

@@ -1,0 +1,302 @@
+<script src="https://cdn.tiny.cloud/1/{your-tinymce-api-key}/tinymce/5/plugins/hr/plugin.min.js" referrerpolicy="origin"></script>
+<script src="https://cdn.tiny.cloud/1/{your-tinymce-api-key}/tinymce/5/plugins/spellchecker/plugin.min.js" referrerpolicy="origin"></script>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-3">
+            <form [formGroup]="personalDetails" id="msform">
+                <!-- progressbar -->
+                <ul id="progressbar">
+                    <li [ngClass]="step >= 1 ? 'active' : 'inactive'">Details Personel</li>
+                    <li [ngClass]="step >= 2 ? 'active' : 'inactive'">Thèse de doctorat</li>
+                    <li [ngClass]="step === 3 ? 'active' : 'inactive'">Production Scientifique</li>
+
+                </ul>
+                <!-- fieldsets -->
+                <fieldset *ngIf="step == 1">
+                    <h2 class="fs-title">Personal Details</h2>
+                    <div class="row">
+                        <div class="col">
+                            <div class="formbold-input-wrapper">
+                                <label for="nom" class="formbold-form-label">Nom</label>
+                                <input formControlName="nom" type="text" name="nom" id="nom" placeholder="Enter nom" class="formbold-form-input" style="border-radius:6px;" />
+                                <div *ngIf="personalDetails.controls['nom'].invalid && (personalDetails.controls['nom'].dirty || personalDetails.controls['nom'].touched)">
+                                    <small class="formbold-error-message">La nom est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="formbold-input-wrapper">
+                                <label for="prenom" class="formbold-form-label">Prenom</label>
+                                <input formControlName="prenom" type="text" name="prenom" id="prenom" placeholder="Enter Prénom" class="formbold-form-input" style="border-radius:6px;" />
+                                <div *ngIf="personalDetails.controls['prenom'].invalid && (personalDetails.controls['prenom'].dirty || personalDetails.controls['prenom'].touched)">
+                                    <small class="formbold-error-message">Prenom est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="formbold-input-wrapper">
+                                <label for="email" class="formbold-form-label">Email</label>
+                                <input formControlName="email" type="text" name="email" id="email" placeholder="Enter Intitulé" class="formbold-form-input" style="border-radius:6px;" />
+                                <div *ngIf="personalDetails.controls['email'].invalid && (personalDetails.controls['email'].dirty || personalDetails.controls['email'].touched)">
+                                    <small class="formbold-error-message">L'email est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="formbold-input-wrapper">
+                                <label for="telephone" class="formbold-form-label">Telephone</label>
+                                <input formControlName="telephone" type="text" name="telephone" id="telephone" placeholder="Enter telephone" class="formbold-form-input" style="border-radius:6px;" />
+                                <div *ngIf="personalDetails.controls['telephone'].invalid && (personalDetails.controls['telephone'].dirty || personalDetails.controls['telephone'].touched)">
+                                    <small class="formbold-error-message">Le téléphone est requis.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="formbold-input-wrapper  mb-4">
+                                <label for="ced" class="formbold-form-label">CED</label>
+                                <select formControlName="ced_id" name="ced" id="ced" class="formbold-form-input">
+                                    <option *ngFor="let ced of ceds" [value]="ced.id">{{ ced.intitule }}</option>
+                                </select>
+                                <div *ngIf="personalDetails.controls['ced_id'].invalid && (personalDetails.controls['ced_id'].dirty || personalDetails.controls['ced_id'].touched)">
+                                    <small class="formbold-error-message">CED is required.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- status -->
+                    <div class="row">
+                        <div class="col">
+                            <div class="formbold-input-wrapper  mb-4">
+                                <label for="ced" class="formbold-form-label">Status</label>
+                                <select formControlName="role" id="role" name="role" class="formbold-form-input"> 
+                                    <option value="" disabled selected>Choisir votre statut</option>
+                                    <option value="enseignant">Enseignant</option>
+                                    <option value="doctorant">Doctorant</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="formbold-input-wrapper  mb-4">
+                                <label for="ced" class="formbold-form-label">Structure de Recherche</label>
+                                <select formControlName="StructureRecherche" name="StructureRecherche" id="StructureRecherche" class="formbold-form-input dropdown-toggle">
+                                    <option *ngFor="let structure of structures" [value]="structure.id">{{ structure.intituleS }}</option>
+                                </select>
+                                <div *ngIf="personalDetails.controls['StructureRecherche'].invalid && (personalDetails.controls['StructureRecherche'].dirty || personalDetails.controls['StructureRecherche'].touched)">
+                                    <small class="formbold-error-message">Structure is required.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- status -->
+                    <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+                </fieldset>
+            </form>
+            <form [formGroup]="theseDetails" id="msform">
+                <fieldset *ngIf="step == 2">
+                    <input type="hidden" formControlName="user_id" name="user_id" [value]="userId" />
+
+
+                    <h2 class="fs-title">Thèse de doctorat</h2>
+                    <div class="formbold-input-wrapper">
+                        <label for="titre" class="formbold-form-label">Titre</label>
+                        <input formControlName="titreT" type="text" name="titreT" id="titreT" placeholder="Enter titreT" class="formbold-form-input   content" style="border-radius:6px;" />
+                        <div *ngIf="theseDetails.controls['titreT'].invalid && (theseDetails.controls['titreT'].dirty || theseDetails.controls['titreT'].touched)">
+                            <small class="formbold-error-message">Le titre est requis.</small>
+                        </div>
+                    </div>
+                    <div class="formbold-input-wrapper">
+                        <label for="Encadrant" class="formbold-form-label">Encadrant</label>
+                        <input formControlName="Encadrant" type="text" name="Encadrant" id="Encadrant" placeholder="Enter le nom de votre Encadrant" class="formbold-form-input" style="border-radius:6px;" />
+                        <div *ngIf="theseDetails.controls['Encadrant'].invalid && (theseDetails.controls['Encadrant'].dirty || theseDetails.controls['Encadrant'].touched)">
+                            <small class="formbold-error-message">Le nom de l'encadrant est requis.</small>
+                        </div>
+                    </div>
+                    <div class="formbold-input-wrapper">
+                        <label for="annee" class="formbold-form-label">Année de these </label>
+                        <select formControlName="AnneeThesse" name="annee" id="annee" class="formbold-form-input" style="border-radius: 6px;">
+                            <option value="" disabled selected>Choisissez une année</option>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                        </select>
+                        <div *ngIf="theseDetails.controls['AnneeThesse'].invalid && (theseDetails.controls['AnneeThesse'].dirty || theseDetails.controls['AnneeThesse'].touched)">
+                            <small class="formbold-error-message">L'année est requise.</small>
+                        </div>
+                    </div>
+
+                    <div class="formbold-input-wrapper">
+                        <label for="descriptionT" class="formbold-form-label">Description du sujet de thèse</label>
+                        <textarea rows="6" formControlName="descriptionT" name="descriptionT" id="descriptionT" placeholder="" class="formbold-form-input" style="border-radius:6px;" class="formbold-form-input c-with-editor"></textarea>
+                        <div *ngIf="theseDetails.controls['descriptionT'].invalid && (theseDetails.controls['descriptionT'].dirty || theseDetails.controls['descriptionT'].touched)">
+                            <small class="formbold-error-message">La description du sujet de thèse est requise.</small>
+                        </div>
+                    </div>
+                    <div class="formbold-input-wrapper">
+                        <label for="impactRegion" class="formbold-form-label">Pertinence et Impact</label>
+                        <textarea rows="6" formControlName="impactRegion" name="impactRegion" id="impactRegion" placeholder="Fournir le détail de la manière avec laquelle le sujet de recherche répond aux besoins spécifiques de la région et son impact potentiel." class="formbold-form-input"
+                            style="border-radius:6px;" class="formbold-form-input c-with-editor"></textarea>
+                        <div *ngIf="theseDetails.controls['impactRegion'].invalid && (theseDetails.controls['impactRegion'].dirty || theseDetails.controls['impactRegion'].touched)">
+                            <small class="formbold-error-message">La pertinence et l'impact sont requis.</small>
+                        </div>
+                    </div>
+                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    <input (click)="next()" type="button" name="next" class="next action-button" value="Next" />
+                </fieldset>
+            </form>
+
+
+            <form [formGroup]="educationalDetails" id="msform">
+
+                <!-- 
+          kfkdkf -->
+
+                <fieldset *ngIf="step == 3">
+                    <div class="row ">
+                        <h2 class="fs-title">les Productions Scientifique</h2>
+                        <input type="hidden" formControlName="user_id" name="user_id" [value]="userId" />
+
+                        <div class="formbold-input-wrapper">
+                            <label for="titre" class="formbold-form-label">Titre</label>
+                            <input formControlName="TitreP" type="text" name="TitreP" id="TitreP" placeholder="Enter TitreP" class="formbold-form-input   content" style="border-radius:6px;" />
+                            <div *ngIf="educationalDetails.controls['TitreP'].invalid && (educationalDetails.controls['TitreP'].dirty || educationalDetails.controls['TitreP'].touched)">
+                                <small class="formbold-error-message">Le titre est requis.</small>
+                            </div>
+                        </div>
+
+                        <div class="formbold-input-wrapper mb-4">
+                            <label for="ced" class="formbold-form-label">Type de Production Scientifique</label>
+                            <select formControlName="Type" id="role" name="Type" class="formbold-form-input" (change)="onTypeChange($event)">
+                            <option value="" disabled selected>Choisir un Type</option>
+                          <option value="communication">Communication</option>
+                          <option value="article">Article</option>
+                          <option value="autre">Autre</option>
+                        </select>
+                        </div>
+                        <!-- autre -->
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='autre'">
+                            <label for="descriptionA" class="formbold-form-label">Description</label>
+                            <textarea rows="6" id="descriptionA" name="descriptionA" placeholder="" class="formbold-form-input" formControlName="descriptionA" style="border-radius: 6px;"></textarea>
+                            <div *ngIf="educationalDetails.controls['descriptionA'].invalid && (educationalDetails.controls['descriptionA'].dirty || educationalDetails.controls['descriptionA'].touched)">
+                                <small class="formbold-error-message">La description est requise.</small>
+                            </div>
+                        </div>
+                        <!-- autre -->
+
+                        <!-- Communication -->
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='communication'">
+                            <label for="titre" class="formbold-form-label">intitule</label>
+                            <input formControlName="intituleC" type="text" name="intituleC" id="intituleC" placeholder="Enter intitule" class="formbold-form-input   content" style="border-radius:6px;" />
+                            <div *ngIf="educationalDetails.controls['intituleC'].invalid && (educationalDetails.controls['intituleC'].dirty || educationalDetails.controls['intituleC'].touched)">
+                                <small class="formbold-error-message">Le titre est requis.</small>
+                            </div>
+                        </div>
+
+                        <div class="formbold-input-wrapper" *ngIf="selectedType === 'communication'">
+                            <label for="dateM" class="formbold-form-label">Date de manifestations</label>
+                            <input formControlName="dateM" type="date" id="dateM" name="dateM" placeholder="" class="formbold-form-input" style="border-radius: 6px;" />
+                        </div>
+
+
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='communication'">
+                            <label for="lieuM" class="formbold-form-label">lieu de manifestations</label>
+                            <input formControlName="lieuM" type="text" name="lieuM" id="lieuM" placeholder="Enter intitule" class="formbold-form-input   content" style="border-radius:6px;" />
+                            <div *ngIf="educationalDetails.controls['lieuM'].invalid && (educationalDetails.controls['lieuM'].dirty || educationalDetails.controls['lieuM'].touched)">
+                                <small class="formbold-error-message">Le lieu est requis.</small>
+                            </div>
+                        </div>
+
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='communication'">
+                            <label for="descriptionC" class="formbold-form-label">Description</label>
+                            <textarea formControlName="descriptionC" rows="6" id="descriptionC" name="descriptionC" placeholder="" class="formbold-form-input" style="border-radius: 6px;"></textarea>
+                            <div *ngIf="educationalDetails.controls['descriptionC'].invalid && (educationalDetails.controls['descriptionC'].dirty || educationalDetails.controls['descriptionC'].touched)">
+                                <small class="formbold-error-message">La description est requise.</small>
+                            </div>
+                        </div>
+                        <!-- Communication -->
+
+                        <!-- Article -->
+                        <div class="formbold-input-wrapper" *ngIf="selectedType === 'article'">
+                            <label for="dateP" class="formbold-form-label">Date de Publication</label>
+                            <input formControlName="dateP" type="date" id="dateP" name="dateP" placeholder="" class="formbold-form-input" style="border-radius: 6px;" />
+                        </div>
+
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='article'">
+                            <label for="numPage" class="formbold-form-label">Le numéro de la page</label>
+                            <input formControlName="numPage" type="text" name="numPage" id="numPage" placeholder="Enter Le numéro de la page" class="formbold-form-input   content" style="border-radius:6px;" />
+                            <div *ngIf="educationalDetails.controls['numPage'].invalid && (educationalDetails.controls['numPage'].dirty || educationalDetails.controls['numPage'].touched)">
+                                <small class="formbold-error-message">Le numéro de la page est requis.</small>
+                            </div>
+                        </div>
+
+
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='article'">
+                            <label for="numPage" class="formbold-form-label">Le titre de Revue</label>
+                            <input formControlName="titreR" type="text" name="titreR" id="titreR" placeholder="Enter Le titre de Revue" class="formbold-form-input   content" style="border-radius:6px;" />
+                            <div *ngIf="educationalDetails.controls['titreR'].invalid && (educationalDetails.controls['titreR'].dirty || educationalDetails.controls['titreR'].touched)">
+                                <small class="formbold-error-message">Le  titre est requis.</small>
+                            </div>
+                        </div>
+
+
+                        <div class="formbold-input-wrapper" *ngIf="selectedType==='article'">
+                            <label for="numPage" class="formbold-form-label">Le volume de Revue</label>
+                            <input formControlName="volumeR" type="text" name="volumeR" id="titreR" placeholder="Enter Le volume du revue" class="formbold-form-input   content" style="border-radius:6px;" />
+                            <div *ngIf="educationalDetails.controls['volumeR'].invalid && (educationalDetails.controls['volumeR'].dirty || educationalDetails.controls['volumeR'].touched)">
+                                <small class="formbold-error-message">Le volume  requis.</small>
+                            </div>
+                        </div>
+                        <div class="test">
+                            <button (click)="addProductionData()">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </button>
+                        </div>
+
+                        <!-- Article -->
+
+                        <div class="row  formbold-form-wrapper mt-5">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Titre</th>
+                                        <th scope="col">Type</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let productionData of productionsData; let i = index">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>{{ productionData.TitreP }}</td>
+                                        <td>{{ productionData.Type }}</td>
+                                        <td>
+                                            <button (click)="deleteProductionData(i)" class="btn btn-icon">
+                                                <i class="fa-solid fa-delete-left" style="color: #4c4e8a;"></i>
+                                              </button>
+
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <input (click)="previous()" type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                    <input (click)="submitForms()" type="submit" name="submit" class="submit action-button" value="Submit" />
+
+                </fieldset>
+            </form>
+
+
+        </div>
+    </div>
+</div>

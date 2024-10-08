@@ -1,0 +1,30 @@
+<div class="main">
+    <!-- Formulaire de connexion -->
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="assets/images/signin-image.jpg" alt="image d'inscription"></figure>
+                    <a href="/register" class="signup-image-link">Créer un compte</a>
+                </div>
+
+                <div class="signin-form">
+                    <h3 class="form-title">Entrer votre un e-mail</h3>
+                    <form [formGroup]="RequestResetForm" class="register-form" id="login-form" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="your_name"><i class="fa fa-envelope"></i></label>
+                            <input formControlName="email" type="email" name="your_name" id="your_name" placeholder="Votre email" />
+                            <div *ngIf="RequestResetForm.controls['email'].invalid && (RequestResetForm.controls['email'].dirty || RequestResetForm.controls['email'].touched)">
+
+                                <small class="text-danger">L'e-mail d'utilisateur est requis.</small>
+                            </div>
+                        </div>
+                        <div class="form-group form-button">
+                            <button type="submit" name="signin" id="signin" class="form-submit" [disabled]="RequestResetForm.invalid">Envoyer le mot de passe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,116 @@
+<!-- <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<br>
+<div class="custom-main-container ">
+    <div class="card-body">
+    </div> -->
+<!-- Button trigger modal -->
+<!-- <div class="border d-flex" style="background-color: #f8f9fa;">
+        <button mat-raised-button type="button" class="btn btn-primary pb-3 pt-3 pl-3 pr-3 mb-3 mt-4 ml-4" (click)="goToCreatePage()">
+            <i class="fa fa-user"></i> Nouveau CED
+          </button>
+
+
+    </div>
+    <div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Filteres</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+
+                    <div class="navbar  filters">
+                        <ul>
+
+
+
+                        </ul>
+                    </div>
+
+                </ul>
+                <form [formGroup]="searchFormGroup" (ngSubmit)="handleSearchCed()" class="form-inline mb-4 mt-4 ml-5" style="width: 650px;display: flex;justify-content: right;align-items: right;">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" formControlName="Keyword" placeholder="Keyword">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+
+    </div>
+    <table class="table table-bordered table-striped" style="background-color: #f8f9fa;">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Intitulé</th>
+                <th>date début</th>
+                <th>date fin</th>
+                <th>encadrement </th>
+                <th>action </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let Ced of Ceds">
+                <th class="number-cell center-text" scope="row">{{Ced.index}}</th>
+                <td class="wrap-cell  left-text"><span>{{Ced.intitule}}</span></td>
+                <td width="50%" class="wrap-cell  left-text"><span>{{Ced.description}}</span></td>
+                <td width="22%">
+                    <div class="d-flex">
+                        <button class="btn btn-sm btn-info mr-2" [routerLink]="['../edit', Ced.id]">
+                  <i class="fa fa-edit"></i> Edit
+                </button>
+                        <button class="btn btn-sm btn-danger" (click)="delete(Ced)">
+                  <i class="fa fa-remove"></i> Delete
+                </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="input-group ">
+        <nav aria-label="..." class=" mr-2">
+            <ul class="pagination">
+                <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+                    <a class="page-link" (click)="gotoPage(currentPage - 1)" tabindex="-1" [attr.aria-disabled]="currentPage === 0 ? 'true' : 'false'">Previous</a>
+                </li>
+                <li class="page-item" *ngFor="let item of [].constructor(totalPages); let i = index" [ngClass]="{'active': i === currentPage}">
+                    <a class="page-link" (click)="gotoPage(i)">{{i + 1}}</a>
+                </li>
+                <li class="page-item" [ngClass]="{'disabled': currentPage === totalPages - 1}">
+                    <a class="page-link" (click)="gotoPage(currentPage + 1)" [attr.aria-disabled]="currentPage === totalPages - 1 ? 'true' : 'false'">Next</a>
+                </li>
+            </ul>
+        </nav>
+
+        <span class="input-group-addon">
+            <select id="numbers" class="form-control" (change)="changePageSize($event)"  >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option selected >5</option>
+            </select>
+        </span>
+    </div>
+
+
+
+
+
+</div> -->

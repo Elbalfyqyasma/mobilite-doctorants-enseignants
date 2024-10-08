@@ -1,0 +1,30 @@
+<div class="formbold-main-wrapper">
+    <!-- Author: FormBold Team -->
+    <!-- Learn More: https://formbold.com -->
+    <div class="formbold-form-wrapper">
+        <h2>Modifier un Cadre Mobilite</h2>
+        <form [formGroup]="cadreMobiliteForm" (ngSubmit)="onUpdate()">
+            <!-- Intitule field -->
+            <div class="formbold-mb-5">
+                <label for="libelleC" class="formbold-form-label">Intitulé</label>
+                <input [value]="cadreMobilite.libelleC" formControlName="libelleC" type="text" name="intitule" id="intitule" placeholder="Enter Intitulé" class="formbold-form-input" />
+                <div *ngIf="cadreMobiliteForm.controls['libelleC'].invalid && (cadreMobiliteForm.controls['libelleC'].dirty || cadreMobiliteForm.controls['libelleC'].touched)">
+                    <small class="text-danger">L'Intitulé de Cadre Mobilite est requis.</small>
+                </div>
+            </div>
+
+            <!-- Description field -->
+            <div class="formbold-mb-5">
+                <label for="description" class="formbold-form-label">Description</label>
+                <textarea formControlName="description" rows="6" name="description" id="description" placeholder="Enter description" class="formbold-form-input"></textarea>
+                <div *ngIf="cadreMobiliteForm.controls['description'].invalid && (cadreMobiliteForm.controls['description'].dirty || cadreMobiliteForm.controls['description'].touched)">
+                    <small class="text-danger">La description de Cadre Mobilite est requise.</small>
+                </div>
+            </div>
+
+            <div>
+                <button class="formbold-btn">Modifier</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+<app-header [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-header>
+
+<div class="zoom-container">
+ 
+  
+    <app-body [collapsed]="isSideNavCollapsed" [screenWidth]="screenWidth"></app-body>
+</div>

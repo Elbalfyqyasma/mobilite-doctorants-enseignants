@@ -1,0 +1,66 @@
+<div class="main">
+    <!-- Formulaire d'inscription -->
+    <section class="signup">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-form">
+                    <h2 class="form-title">Inscription</h2>
+                    <form [formGroup]="registerForm" class="register-form" id="register-form" (ngSubmit)="onRegisterSubmit()">
+
+                        <div class="form-group">
+                            <label for="name"><i class="fa fa-account material-icons-name"></i></label>
+                            <input formControlName="nom" type="text" name="name" id="name" placeholder="Votre Nom" />
+                            <div *ngIf="registerForm.controls['nom'].invalid && (registerForm.controls['nom'].dirty || registerForm.controls['nom'].touched)">
+                                <small class="text-danger">Le nom  est requis.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom"><i class="fa fa-account material-icons-name"></i></label>
+                            <input formControlName="prenom" type="text" name="prenom" id="prenom" placeholder="Votre Prénom" />
+                            <div *ngIf="registerForm.controls['prenom'].invalid && (registerForm.controls['prenom'].dirty || registerForm.controls['prenom'].touched)">
+                                <small class="text-danger">Le prenom  est requis.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email"><i class="zmdi zmdi-email"></i></label>
+                            <input formControlName="email" type="email" name="email" id="email" placeholder="Votre Adresse Email" />
+                            <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                                <small class="text-danger">L'adresse email est requise et doit être valide.</small>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role"><i class="zmdi zmdi-assignment"></i></label>
+                            <select formControlName="role" id="role" name="role" aria-label="Default select example" class="form-select" style="border: none; border-bottom: 1px solid black;"> 
+                                <option value="" disabled selected >Choisir votre statut</option>
+                                <option value="enseignant">Enseignant</option>
+                                <option value="doctorant">Doctorant</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input formControlName="password" type="password" name="pass" id="pass" placeholder="Mot de passe" />
+                        </div>
+                        <div class="form-group">
+                            <label for="re-pass"><i class="fa fa-lock-outline"></i></label>
+                            <input formControlName="confirmPassword" type="password" name="re_pass" id="re_pass" placeholder="Répétez votre mot de passe" />
+                            <div *ngIf="registerForm.hasError('passwordMismatch') && (registerForm.controls['confirmPassword'].dirty || registerForm.controls['confirmPassword'].touched)">
+                                <small class="text-danger">Les mots de passe ne correspondent pas.</small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group form-button  ">
+                            <button type="submit" name="signup" id="signup" class="form-submit" [disabled]="registerForm.invalid">S'inscrire</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="signup-image">
+                    <figure><img src="assets/images/signup-image.jpg" alt="image d'inscription"></figure>
+                    <a href="#" class="signup-image-link">Je suis déjà membre</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

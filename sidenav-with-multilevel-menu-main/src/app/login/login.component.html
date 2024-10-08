@@ -1,0 +1,50 @@
+<div class="main">
+    <!-- Formulaire de connexion -->
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="assets/images/signin-image.jpg" alt="image d'inscription"></figure>
+                    <a href="/register" class="assets/images/signup-image-link">Créer un compte</a>
+                </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title">Se connecter</h2>
+                    <form [formGroup]="loginForm" class="register-form" id="login-form" (ngSubmit)="onSubmit()">
+                        <div class="alert alert-danger" [hidden]="!error">
+                            {{error}}
+                        </div>
+                        <div class="alert alert-success" [hidden]="!success">
+                            {{ success }}
+                        </div>
+                        <div class="form-group">
+                            <label for="your_name"><i class="fa fa-user"></i></label>
+                            <input formControlName="email" type="text" name="your_name" id="your_name" placeholder="Votre d'utilisateur" />
+                            <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)">
+                                <small class="text-danger">Le nom d'utilisateur est requis.</small>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="your_pass"><i class="fa fa-lock"></i></label>
+                            <input formControlName="password" type="password" name="your_pass" id="your_pass" placeholder="Mot de passe" />
+                            <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                                <small class="text-danger">Le nom d'utilisateur est requis.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Se souvenir de moi</label>
+                        </div>
+                        <div class="form-group form-button">
+                            <button type="submit" name="signin" id="signin" class="form-submit" value="Se connecter" [disabled]="loginForm.invalid">Se connecter</button>
+                        </div>
+                        <small class="float-right">
+                                <a href="/request-password-reset" >oublier mot de passe</a>
+                        </small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

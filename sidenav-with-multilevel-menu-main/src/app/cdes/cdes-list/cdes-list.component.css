@@ -1,0 +1,117 @@
+.btn-outline-info {
+    color: #a9cede !important;
+}
+
+.modal-header {
+    background-color: #007bff;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.modal-title {
+    font-weight: bold;
+    margin: 0;
+}
+
+.close {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.close:hover {
+    color: #ccc;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+}
+
+.btn-outline-dark {
+    color: #343a40;
+    border-color: #343a40;
+}
+
+.btn-outline-dark:hover {
+    background-color: #343a40;
+    color: #fff;
+}
+
+
+/* Style the small profile image */
+
+.imageP {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+thead {
+    background-color: #484746;
+}
+
+th {
+    color: #ffffff;
+}
+
+.number-cell {
+    background-color: #f8f9fa;
+    /* Set the background color to match the table row */
+    color: #000;
+    /* Set the text color to black */
+    /* Add any other desired styles for the number cell */
+}
+
+.wrap-cell {
+    white-space: normal;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.custom-swal-popup .swal2-title {
+    font-size: 20px;
+    /* Adjust the font size as per your preference */
+}
+
+.custom-swal-popup .swal2-content {
+    font-size: 16px;
+    /* Adjust the font size as per your preference */
+}
+
+.custom-swal-popup .swal2-actions {
+    margin-top: 10px;
+    /* Adjust the margin as per your preference */
+}
+
+.custom-swal-popup .swal2-confirm {
+    padding: 5px 10px;
+    /* Adjust the padding as per your preference */
+    font-size: 16px;
+    /* Adjust the font size as per your preference */
+}
+
+.custom-swal-popup .swal2-cancel {
+    padding: 5px 10px;
+    /* Adjust the padding as per your preference */
+    font-size: 16px;
+    /* Adjust the font size as per your preference */
+}
+
+.custom-main-container {
+    grid-area: main;
+    overflow-y: auto;
+    padding: 25px 50px 75px 100px;
+}
